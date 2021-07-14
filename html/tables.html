@@ -56,12 +56,13 @@
       })
       .then((response) => response.json())
       .then((data) => {
+
         if (!data || !data.length) {
           return;
         }
         data.forEach(customer => {
           const {name, phone} = customer;
-          const newCustomerItem = document.createElement('<li>');
+          const newCustomerItem = document.createElement('li');
           newCustomerItem.classList.add("list-group-item");
           newCustomerItem.textContent = `${name} - ${phone}`;
           reservations.appendChild(newCustomerItem);
@@ -76,12 +77,13 @@
       })
         .then((response) => response.json())
         .then((data) => {
+
           if (!data || !data.length) {
             return;
           }
           data.forEach(customer => {
             const { name, phone } = customer;
-            const newCustomerItem = document.createElement('<li>');
+            const newCustomerItem = document.createElement('li');
             newCustomerItem.classList.add("list-group-item");
             newCustomerItem.textContent = `${name} - ${phone}`;
             waitlist.appendChild(newCustomerItem);
