@@ -36,8 +36,45 @@
       <input type="text" class="form-control" id="customerId">
     </div>
     <div class="form-group w-50 mx-auto">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary" id="add-btn">Submit</button>
     </div>
   </form>
+
+  <script type="text/javascript">    
+      const addBtn = document.getElementById('add-btn');
+
+      addBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        let customerName = document.getElementById('customerName').value.trim();
+        let customerPhone = document.getElementById('customerPhone').value.trim();
+        let customerEmail = document.getElementById('customerEmail').value.trim();
+        let customerId = document.getElementById('customerId').value.trim();
+
+        let newCustomer = {
+          Name: customerName,
+          Phone: customerPhone,
+          Email: customerEmail,
+          Id: customerId,
+        };
+        
+        fetch('/api/reserve', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newCustomer),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('reserve.html', data);
+            alert(`Added customer: ${data.name}`);
+          })
+          .catch((error) => {
+            console.error('Error:' , error);
+          });
+      })
+  </script>
+
 </body>
 </html>
