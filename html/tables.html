@@ -23,7 +23,7 @@
       <div class="card w-50 mx-auto my-4">
         <div class="card-header">Current Reservations</div>
         <div class=card-body">
-          <ul class="list-group">
+          <ul class="list-group" id="reservations">
             <li class="list-group-item">TableID1 - 123-456-7890</li>
             <li class="list-group-item">TableID2 - 123-456-7890</li>
             <li class="list-group-item">TableID3 - 123-456-7890</li>
@@ -34,7 +34,7 @@
       <div class="card w-50 mx-auto my-4">
         <div class="card-header">Current Waitlist</div>
         <div class=card-body">
-          <ul class="list-group">
+          <ul class="list-group" id="waitlist">
             <li class="list-group-item">TableID1 - 123-456-7890</li>
             <li class="list-group-item">TableID2 - 123-456-7890</li>
             <li class="list-group-item">TableID3 - 123-456-7890</li>
@@ -44,5 +44,49 @@
     </div>
   </div>
 
+  <script type="text/javascript">
+    const reservations = document.getElementById("reservations");
+    const waitlist = document.getElementById("waitlist");
+
+    fetch('/api/tables', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data || !data.length) {
+          return;
+        }
+        data.forEach(customer => {
+          const {name, phone} = customer;
+          const newCustomerItem = document.createElement('<li>');
+          newCustomerItem.classList.add("list-group-item");
+          newCustomerItem.textContent = `${name} - ${phone}`;
+          reservations.appendChild(newCustomerItem);
+        });
+      });
+
+    fetch('/api/waitlist', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data || !data.length) {
+            return;
+          }
+          data.forEach(customer => {
+            const { name, phone } = customer;
+            const newCustomerItem = document.createElement('<li>');
+            newCustomerItem.classList.add("list-group-item");
+            newCustomerItem.textContent = `${name} - ${phone}`;
+            waitlist.appendChild(newCustomerItem);
+          });
+        });
+  </script>
 </body>
 </html>
