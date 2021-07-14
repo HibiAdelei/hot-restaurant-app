@@ -11,6 +11,6 @@ app.use(express.json());
 
 //require apiroute
 //require html route 
-app.listen(port, function() {
+app.listen(PORT, function() {
  console.log("Application listening on port " + PORT);
 });
