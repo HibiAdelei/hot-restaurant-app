@@ -15,6 +15,10 @@ module.exports = function(app) {
         res.json(waitListData);
       });
 
+      app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, './html/index.html'));
+      });
+
       app.post("/api/tables", function(req, res) {
        
         if (tableData.length < 5) {
