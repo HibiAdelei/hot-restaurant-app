@@ -1,15 +1,6 @@
-//this array should hold all of our reserved tables. initialised with a dummy object
+//this array should hold all of our reserved tables. initialised with an empty array
 
-var tablesArray = 
-
-[
-    {
-      "Name": "Owner",
-      "Phone": 1111111111,
-      "Email": "aaa@bbb.com",
-      "Id": 1123
-    }
-];
+var tablesArray = [];
 
 // exports for access
 module.exports = tablesArray;
