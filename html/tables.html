@@ -24,9 +24,6 @@
         <div class="card-header">Current Reservations</div>
         <div class=card-body">
           <ul class="list-group" id="reservations">
-            <li class="list-group-item">TableID1 - 123-456-7890</li>
-            <li class="list-group-item">TableID2 - 123-456-7890</li>
-            <li class="list-group-item">TableID3 - 123-456-7890</li>
           </ul>
         </div>
       </div>
@@ -35,9 +32,6 @@
         <div class="card-header">Current Waitlist</div>
         <div class=card-body">
           <ul class="list-group" id="waitlist">
-            <li class="list-group-item">TableID1 - 123-456-7890</li>
-            <li class="list-group-item">TableID2 - 123-456-7890</li>
-            <li class="list-group-item">TableID3 - 123-456-7890</li>
           </ul>
         </div>
       </div>
@@ -54,7 +48,12 @@
           'Content-Type': 'application/json',
         },
       })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response) {
+          return;
+        }
+        response.json()
+      })
       .then((data) => {
 
         if (!data || !data.length) {
@@ -75,20 +74,25 @@
           'Content-Type': 'application/json',
         },
       })
-        .then((response) => response.json())
-        .then((data) => {
+      .then((response) => {
+        if (!response) {
+          return;
+        }
+        response.json()
+      })
+      .then((data) => {
 
-          if (!data || !data.length) {
-            return;
-          }
-          data.forEach(customer => {
-            const { name, phone } = customer;
-            const newCustomerItem = document.createElement('li');
-            newCustomerItem.classList.add("list-group-item");
-            newCustomerItem.textContent = `${name} - ${phone}`;
-            waitlist.appendChild(newCustomerItem);
-          });
+        if (!data || !data.length) {
+          return;
+        }
+        data.forEach(customer => {
+          const { name, phone } = customer;
+          const newCustomerItem = document.createElement('li');
+          newCustomerItem.classList.add("list-group-item");
+          newCustomerItem.textContent = `${name} - ${phone}`;
+          waitlist.appendChild(newCustomerItem);
         });
+      });
   </script>
 </body>
 </html>
