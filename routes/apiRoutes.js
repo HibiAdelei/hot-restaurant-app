@@ -1,3 +1,5 @@
+const path = require('path');
+
 var tableData = require("../appdata/table");
 var waitListData = require("../appdata/waitlistdata");
 
@@ -15,19 +17,18 @@ module.exports = function(app) {
         res.json(waitListData);
       });
 
-      app.get('/reserve', (req, res) => {
-        res.sendFile(path.join(__dirname, './html/reserve.html'));
-      });
-
       app.post("/api/tables", function(req, res) {
-       
+        
         if (tableData.length < 5) {
-          tableData.push(req.body);
-          res.json(true);
+
+          const newCustomer = req.body;
+          tableData.push(newCustomer);
+          res.send('Table reserved.');
         }
         else {
-          waitListData.push(req.body);
-          res.json(false);
+          const newCustomer = req.body;
+          waitListData.push(newCustomer);
+          res.send('Added to waitlist.');
         }
       });
 

@@ -49,10 +49,10 @@
         },
       })
       .then((response) => {
-        if (!response) {
+        if (!response.ok) {
           return;
         }
-        response.json()
+        return response.json();
       })
       .then((data) => {
 
@@ -60,10 +60,10 @@
           return;
         }
         data.forEach(customer => {
-          const {name, phone} = customer;
+          const {Name, Phone} = customer;
           const newCustomerItem = document.createElement('li');
           newCustomerItem.classList.add("list-group-item");
-          newCustomerItem.textContent = `${name} - ${phone}`;
+          newCustomerItem.textContent = `${Name} - ${Phone}`;
           reservations.appendChild(newCustomerItem);
         });
       });
@@ -75,10 +75,10 @@
         },
       })
       .then((response) => {
-        if (!response) {
+        if (!response.ok) {
           return;
         }
-        response.json()
+        return response.json();
       })
       .then((data) => {
 
@@ -86,10 +86,10 @@
           return;
         }
         data.forEach(customer => {
-          const { name, phone } = customer;
+          const { Name, Phone } = customer;
           const newCustomerItem = document.createElement('li');
           newCustomerItem.classList.add("list-group-item");
-          newCustomerItem.textContent = `${name} - ${phone}`;
+          newCustomerItem.textContent = `${Name} - ${Phone}`;
           waitlist.appendChild(newCustomerItem);
         });
       });
