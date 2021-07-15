@@ -2,4 +2,4 @@
 var waitListArray = [];
 
 //exports array
-module.exports = waitingArray;
+module.exports = waitListArray;

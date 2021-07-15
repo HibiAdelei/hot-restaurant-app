@@ -1,4 +1,4 @@
-var tableData = require("../appdata/tabledata");
+var tableData = require("../appdata/table");
 var waitListData = require("../appdata/waitlistdata");
 
 
